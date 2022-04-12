@@ -1,17 +1,43 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-
+    <van-search
+      v-model="SearchVal"
+      placeholder="请输入搜索关键词"
+      shape="round"
+    />
+    <van-swipe :autoplay="3000">
+      <van-swipe-item v-for="item in banner" :key="item.id">
+        <!-- v-lazy="item.image_url"  -->
+        <img :src="item.image_url" width="100%"/>
+      </van-swipe-item>
+    </van-swipe>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-
+import { GetHomeLists } from '@/request/api.js'
 export default {
   name: 'Home',
-  components: {
-
-  }
+  data () {
+    return {
+      SearchVal: '',
+      banner: []
+    }
+  },
+  components: {},
+  created () {
+    // console.log('crestes')
+    GetHomeLists()
+      .then((res) => {
+        console.log('res', res)
+        const { banner } = res.data.data
+        this.banner = banner
+      })
+      .catch((err) => {
+        console.log('Error')
+        console.log(err)
+      })
+  },
+  methods: {}
 }
 </script>

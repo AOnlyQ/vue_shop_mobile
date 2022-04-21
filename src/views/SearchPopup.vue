@@ -48,7 +48,9 @@ export default {
       searchHistoryData: [],
       searchHotData: [],
       searchTipsArr: [],
+      // 搜索商品列表的数据
       goodsList: [],
+      // 分类数据
       filterCategory: []
     }
   },
@@ -69,8 +71,13 @@ export default {
         console.log('res', res)
         if (res.errno === 0) {
           this.goodsList = res.data.data
-          this.filterCategory = res.data.filterCategory
+          let arr = res.data.filterCategory
+          arr = JSON.parse(
+            JSON.stringify(arr).replace(/name/g, 'text').replace(/id/g, 'value')
+          )
+          this.filterCategory = arr
         }
+        console.log('this.filterCategory', this.filterCategory)
       })
     },
     onCancel () {

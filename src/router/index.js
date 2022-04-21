@@ -11,40 +11,52 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect: '/home'
-  },
-  {
-
-    path: '/home',
-    name: 'Home',
-    component: Home,
+    // redirect: '/index',
+    component: () => import('@/views/Index.vue'),
     children: [
       {
-        path: '/home/searchPopup',
-        name: 'SearchPopup',
-        component: () => import('@/views/SearchPopup.vue')
+        path: '/',
+        redirect: '/home'
+      },
+      {
+
+        path: '/home',
+        name: 'Home',
+        component: Home,
+        children: [
+          {
+            path: '/home/searchPopup',
+            name: 'SearchPopup',
+            component: () => import('@/views/SearchPopup.vue')
+          }
+        ]
+      },
+      {
+        path: '/topic',
+        name: 'Topic',
+        component: () => import('@/views/Topic.vue')
+      },
+      {
+        path: '/category',
+        name: 'Category',
+        component: () => import('@/views/Category.vue')
+      },
+      {
+        path: '/cart',
+        name: 'Cart',
+        component: () => import('@/views/Cart.vue')
+      },
+      {
+        path: '/user',
+        name: 'User',
+        component: () => import('@/views/User.vue')
       }
     ]
   },
   {
-    path: '/topic',
-    name: 'Topic',
-    component: () => import('@/views/Topic.vue')
-  },
-  {
-    path: '/category',
-    name: 'Category',
-    component: () => import('@/views/Category.vue')
-  },
-  {
-    path: '/cart',
-    name: 'Cart',
-    component: () => import('@/views/Cart.vue')
-  },
-  {
-    path: '/user',
-    name: 'User',
-    component: () => import('@/views/User.vue')
+    path: '/test',
+    name: 'Test',
+    component: () => import('@/views/Test.vue')
   }
 
 ]

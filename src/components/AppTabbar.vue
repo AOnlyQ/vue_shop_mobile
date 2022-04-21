@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-tabbar v-model="active">
+    <van-tabbar v-model="active" active-color="darkred" inactive-color="#666">
       <van-tabbar-item to="/home" icon="home-o">首页</van-tabbar-item>
       <van-tabbar-item to="/topic" icon="search">专题</van-tabbar-item>
       <van-tabbar-item to="/category" icon="friends-o">分类</van-tabbar-item>

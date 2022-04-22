@@ -28,17 +28,16 @@ export default {
       ]
     }
   },
-  methods: {
-    created () {
-      console.log(
-        'filterCategory',
-        this.filterCategory,
-        'goodsList',
-        this.goodsList
-      )
-    }
+  methods: {},
+  created () {
+    console.log(
+      'filterCategory',
+      this.filterCategory,
+      'goodsList',
+      this.goodsList
+    )
   },
-  mounted () {
+  beforeUpdate () {
     console.log('执行了beforeUpdated')
     // eslint-disable-next-line no-unused-vars
     const arr = this.filterCategory.map((item) => {
@@ -46,7 +45,6 @@ export default {
         this.categoryVal = item.value
       }
     })
-    console.log('this.categoryVal', this.categoryVal)
   }
 }
 </script>

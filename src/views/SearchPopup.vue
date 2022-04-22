@@ -77,7 +77,10 @@ export default {
           )
           this.filterCategory = arr
         }
-        console.log('this.filterCategory', this.filterCategory)
+        console.log(
+          'SearchPopup组件中this.filterCategory',
+          this.filterCategory
+        )
       })
     },
     onCancel () {

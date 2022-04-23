@@ -2,6 +2,7 @@
   <div>
     <van-list finished-text="没有更多了" :finished="finished">
       <van-cell
+        @click="cellClick(item)"
         v-for="(item, index) in searchTipsArr"
         :key="index"
         :title="item"
@@ -15,6 +16,11 @@ export default {
   data () {
     return {
       finished: true
+    }
+  },
+  methods: {
+    cellClick (val) {
+      this.$emit('cellClick', val)
     }
   }
 }

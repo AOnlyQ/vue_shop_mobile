@@ -1,11 +1,16 @@
 <template>
   <ul>
-    <li>
-      <img :src="imgSrc" style="display: block" width="100%" alt="" />
+    <li v-for="item in goodsList" :key="item.id">
+      <img
+        :src="item.list_pic_url"
+        style="display: block"
+        width="100%"
+        alt=""
+      />
       <div class="van-ellipsis">
-        这是一段最多显示一行的文字，多余的内容会被省略
+        {{ item.name }}
       </div>
-      <div class="price">{{ 99 | RMBformat }}</div>
+      <div class="price">{{ item.retail_price | RMBformat }}</div>
     </li>
   </ul>
 </template>
@@ -16,6 +21,9 @@ export default {
     return {
       imgSrc: require('@/assets/logo.png')
     }
+  },
+  mounted () {
+    console.log('Products组件中this.goodsList', this.goodsList)
   }
 }
 </script>
@@ -25,6 +33,7 @@ ul {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  background-color: #efefef;
   li {
     width: 49%;
     margin-bottom: 0.1rem;

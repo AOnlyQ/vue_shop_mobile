@@ -12,15 +12,19 @@
       v-if="blockShow === 1"
       :searchHistoryData="searchHistoryData"
       :searchHotData="searchHotData"
+      @tagClick="tagClick"
     />
     <SearchTipsList
       v-else-if="blockShow === 2"
       :searchTipsArr="searchTipsArr"
+      @cellClick="tagClick"
     />
     <SearchProducts
       v-else
       :filterCategory="filterCategory"
       :goodsList="goodsList"
+      @categoryChange="categoryChange"
+      @priceChange="priceChange"
     />
   </div>
 </template>
@@ -31,7 +35,7 @@ import SearchProducts from '@/components/SearchProducts'
 import {
   GetPopupData,
   GetSearchTipsListData,
-  GetSearchData
+  GetGoodsListData
 } from '@/request/api.js'
 export default {
   components: { HistoryHot, SearchTipsList, SearchProducts },
@@ -51,7 +55,10 @@ export default {
       // 搜索商品列表的数据
       goodsList: [],
       // 分类数据
-      filterCategory: []
+      filterCategory: [],
+      order: 'desc', // 价格排序，默认值为desc由高到低,asc为由低到高
+      categoryId: 0, // 分类id
+      sort: 'id' // 排序方式,默认排序方式根据id
     }
   },
   created () {
@@ -67,7 +74,14 @@ export default {
   methods: {
     onSearch (val) {
       this.blockShow = 3
-      GetSearchData({ keyword: val }).then((res) => {
+      GetGoodsListData({
+        keyword: val,
+        page: 1,
+        size: 20,
+        order: this.order, // 价格排序
+        categoryId: this.categoryId,
+        sort: this.sort
+      }).then((res) => {
         console.log('res', res)
         if (res.errno === 0) {
           this.goodsList = res.data.data
@@ -94,6 +108,19 @@ export default {
           this.searchTipsArr = res.data
         }
       })
+    },
+    categoryChange (val) {
+      this.categoryId = val
+      this.onSearch(this.searchVal)
+    },
+    priceChange (val) {
+      this.order = val
+      this.sort = 'price'
+      this.onSearch(this.searchVal)
+    },
+    tagClick (val) {
+      this.searchVal = val
+      this.onSearch(this.searchVal)
     }
   }
 }
@@ -102,7 +129,6 @@ export default {
 .popup {
   width: 100%;
   height: 100%;
-  // background-color: #ccc;
   background-color: #efefef;
   position: absolute;
   top: 0;

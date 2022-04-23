@@ -3,15 +3,15 @@
     <!-- <router-link to="/"></router-link> -->
     <!-- <router-link to="/about">About</router-link> -->
     <router-view />
-    <!-- <AppTabbar /> -->
+    <AppTabbar />
   </div>
 </template>
 <script>
-// import AppTabbar from '@/components/AppTabbar'
+import AppTabbar from '@/components/AppTabbar'
 
-// export default {
-//   components: { AppTabbar }
-// }
+export default {
+  components: { AppTabbar }
+}
 </script>
 <style lang="less">
 #app {

@@ -6,4 +6,6 @@ export const GetPopupData = () => request.get('/search/index')
 // 请求搜索提示数据
 export const GetSearchTipsListData = (params) => request.get('/search/helper', { params })
 // 获取搜索产品内容
-export const GetSearchData = (params) => request.get('/goods/list', { params })
+export const GetGoodsListData = (params) => request.get('/goods/list', { params })
+// 删除历史记录
+export const ClearHistory = () => request.post('/search/clearhistory')

@@ -15,6 +15,12 @@ export default {
     return {
       active: 0
     }
+  },
+  computed: {
+    // eslint-disable-next-line vue/no-dupe-keys
+    active: function () {
+      return this.$route.meta.activeNum
+    }
   }
 }
 </script>

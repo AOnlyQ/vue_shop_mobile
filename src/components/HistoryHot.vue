@@ -1,14 +1,15 @@
 <template>
   <div class="history-hot">
-    <div class="his-hot">
+    <div class="his-hot" v-if="isShowHistory">
       <div class="hd">
         <h4>历史记录</h4>
-        <van-icon name="delete-o" />
+        <van-icon name="delete-o" @click="clearFn" />
       </div>
       <div class="bd">
         <van-tag
           plain
           type="default"
+          @click="tagClick(item)"
           v-for="(item, index) in searchHistoryData"
           :key="index"
           >{{ item }}</van-tag
@@ -23,6 +24,7 @@
         <van-tag
           plain
           type="default"
+          @click="tagClick(item.keyword)"
           v-for="(item, index) in searchHotData"
           :key="index"
           >{{ item.keyword }}</van-tag
@@ -32,10 +34,31 @@
   </div>
 </template>
 <script>
+import { ClearHistory } from '@/request/api.js'
 export default {
   props: ['searchHistoryData', 'searchHotData'],
   data () {
-    return {}
+    return {
+      isShowHistory: true
+    }
+  },
+  methods: {
+    tagClick (val) {
+      this.$emit('tagClick', val)
+    },
+    clearFn () {
+      console.log('test')
+      ClearHistory().then((res) => {
+        if (res.errno === 0) {
+          console.log(res)
+          this.$toast.success('删除成功')
+          // 隐藏历史记录
+          setTimeout(() => {
+            this.isShowHistory = false
+          }, 1000)
+        }
+      })
+    }
   }
 }
 </script>

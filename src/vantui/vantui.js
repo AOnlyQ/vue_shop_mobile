@@ -2,7 +2,7 @@
 import Vue from 'vue'
 import {
   Cell, List, Tag, Icon, Tabbar, TabbarItem, Button, Search, Swipe, SwipeItem, Lazyload, Popup,
-  DropdownMenu, DropdownItem, Empty
+  DropdownMenu, DropdownItem, Empty, Toast
 
 } from 'vant'
 
@@ -21,3 +21,4 @@ Vue.use(Swipe)
 Vue.use(SwipeItem)
 Vue.use(Lazyload)
 Vue.use(Popup)
+Vue.use(Toast)

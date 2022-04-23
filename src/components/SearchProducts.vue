@@ -3,8 +3,18 @@
     <van-dropdown-menu>
       <van-dropdown-item title="综合" disabled />
       <!-- v-model指定van-dropdown-item的选中项 -->
-      <van-dropdown-item v-model="categoryVal" :options="filterCategory" />
-      <van-dropdown-item v-model="value2" :options="option2" />
+      <van-dropdown-item
+        title="分类"
+        v-model="categoryVal"
+        @change="categorychange"
+        :options="filterCategory"
+      />
+      <van-dropdown-item
+        title="价格"
+        v-model="value2"
+        :options="option2"
+        @change="pricechange"
+      />
     </van-dropdown-menu>
     <van-empty v-if="isEmpty" image="search" description="暂无商品" />
     <Products v-else :goodsList="goodsList" />
@@ -18,17 +28,24 @@ export default {
   data () {
     return {
       isEmpty: false,
-      value2: 'a',
+      value2: 'desc',
       // 分类下拉菜单当前项
       categoryVal: '',
       option2: [
-        { text: '默认排序', value: 'a' },
-        { text: '好评排序', value: 'b' },
-        { text: '销量排序', value: 'c' }
+        { text: '价格由高到低', value: 'desc' },
+        { text: '价格由低到高', value: 'asc' }
       ]
     }
   },
-  methods: {},
+  methods: {
+    categorychange (val) {
+      // console.log('SearchProducts组件val', val)
+      this.$emit('categoryChange', val)
+    },
+    pricechange (val) {
+      this.$emit('priceChange', val)
+    }
+  },
   created () {
     console.log(
       'filterCategory',
@@ -38,7 +55,6 @@ export default {
     )
   },
   beforeUpdate () {
-    console.log('执行了beforeUpdated')
     // eslint-disable-next-line no-unused-vars
     const arr = this.filterCategory.map((item) => {
       if (item.checked) {

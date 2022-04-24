@@ -12,14 +12,14 @@
 <script>
 export default {
   data () {
-    return {
-      active: 0
-    }
+    return {}
   },
   computed: {
-    // eslint-disable-next-line vue/no-dupe-keys
-    active: function () {
-      return this.$route.meta.activeNum
+    active: {
+      get () {
+        return this.$route.meta.activeNum
+      },
+      set () {}
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="item in goodsList" :key="item.id">
+    <li v-for="item in goodsList" :key="item.id" @click="toProductDetail(item.id)">
       <img
         :src="item.list_pic_url"
         style="display: block"
@@ -24,6 +24,19 @@ export default {
   },
   mounted () {
     console.log('Products组件中this.goodsList', this.goodsList)
+  },
+  methods: {
+    goToDetail (id) {
+      this.$router.push('/productDetail?id=' + id)
+    },
+
+    toProductDetail (id) {
+      this.$router.push('/pruductDetail?id=' + id)
+      // 页面刷新
+      setTimeout(() => {
+        this.$router.go(0)
+      }, 10)
+    }
   }
 }
 </script>

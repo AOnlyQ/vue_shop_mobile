@@ -77,6 +77,8 @@ export default {
         username,
         pwd
       }).then((res) => {
+        console.log(res)
+
         if (res.errno === 0) {
           console.log(res)
           /* 1、提示登录成功 */

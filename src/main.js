@@ -8,7 +8,7 @@ import '@/vantui/vantui'
 import axios from 'axios'
 Vue.config.productionTip = false
 
-Vue.filter('RMBformat', val => '￥ ' + val.toFixed(2) + ' 元')
+Vue.filter('RMBformat', val => '￥ ' + Number(val).toFixed(2) + ' 元')
 new Vue({
   router,
   store,

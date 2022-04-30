@@ -2,8 +2,8 @@
 import Vue from 'vue'
 import {
   Cell, List, Tag, Icon, Tabbar, TabbarItem, Button, Search, Swipe, SwipeItem, Lazyload, Popup,
-  DropdownMenu, DropdownItem, Empty, Toast, Col, Row, Grid, GridItem, Form, Field
-
+  DropdownMenu, DropdownItem, Empty, Toast, Col, Row, Grid, GridItem, Form, Field, GoodsAction,
+  GoodsActionButton, GoodsActionIcon, Sku, Checkbox, CheckboxGroup, Card, SubmitBar
 } from 'vant'
 
 Vue.use(Empty)
@@ -28,3 +28,12 @@ Vue.use(Grid)
 Vue.use(GridItem)
 Vue.use(Form)
 Vue.use(Field)
+Vue.use(GoodsAction)
+Vue.use(GoodsActionButton)
+Vue.use(GoodsActionIcon)
+Vue.use(Sku)
+
+Vue.use(Checkbox)
+Vue.use(CheckboxGroup)
+Vue.use(Card)
+Vue.use(SubmitBar)

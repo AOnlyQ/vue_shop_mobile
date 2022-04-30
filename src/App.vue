@@ -3,7 +3,7 @@
     <!-- <router-link to="/"></router-link> -->
     <!-- <router-link to="/about">About</router-link> -->
     <router-view />
-    <AppTabbar />
+    <AppTabbar v-if="$route.meta.isShowTabbar" />
   </div>
 </template>
 <script>
@@ -16,7 +16,7 @@ export default {
 <style lang="less">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  background-color: #ccc;
+  background-color: #efefef;
   min-height: 100%;
   font-size: 0.14rem;
 }

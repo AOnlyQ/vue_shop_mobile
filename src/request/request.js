@@ -4,7 +4,11 @@ const instance = axios.create({
   timeout: 5000
 })
 instance.interceptors.request.use(config => {
-  // if()
+  const token = localStorage.getItem('token')
+  if (token) {
+    // 携带登录凭证发起请求
+    config.headers['X-Nideshop-Token'] = token
+  }
   return config
 }, err => {
   return Promise.reject(err)
